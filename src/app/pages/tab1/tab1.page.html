@@ -9,5 +9,11 @@
 <ion-content>
   
   <app-news [news]="news"></app-news>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Refreshing...">
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
   
 </ion-content>

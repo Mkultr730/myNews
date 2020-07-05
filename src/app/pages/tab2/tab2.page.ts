@@ -10,6 +10,7 @@ import { Article } from 'src/app/interfaces/interfaces';
 })
 export class Tab2Page implements OnInit {
 
+  @ViewChild(IonSegment) segment: IonSegment;
 
   categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 
@@ -26,10 +27,19 @@ export class Tab2Page implements OnInit {
     this.loadNews(event.detail.value);
   }
 
-  loadNews(category){
+  loadNews(category, event?){
     this.newsService.getTopHeadlinesCategory(category).subscribe( res => {
       this.news.push( ...res.articles );
+
+      if (event) {
+        event.target.complete();
+      }
+
     });
+  }
+
+  loadData(event) {
+    this.loadNews(this.segment.value, event);
   }
 
 }
