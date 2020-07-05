@@ -27,7 +27,6 @@ export class NewsService {
     return this.http.get<T>(query, { headers });
   }
 
-
   getTopHeadlines(){
     this.headlinesPage++;
     return this.executeQuery<ResponseTopHeadlines>(`top-headlines?country=us&page=${this.headlinesPage}`);
