@@ -1,8 +1,15 @@
-<ion-card>
+<ion-card color="dark">
   <ion-card-header>
     <ion-card-subtitle> 
       <span class="text-primary"> {{ index + 1 }}. </span>
-      <span class="news-source-name">{{ new.source.name }} </span>            
+      <span class="news-source-name">{{ new.source.name }} </span>
+      
+      <div class="options">
+        <ion-button fill="clear" (click)="presentActionSheet()">
+          <ion-icon name="ellipsis-vertical" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+      
     </ion-card-subtitle>
     <ion-card-title (click)="goToNew()"> {{ new.title }} </ion-card-title>
   </ion-card-header>
