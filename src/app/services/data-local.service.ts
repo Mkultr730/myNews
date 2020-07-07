@@ -24,6 +24,11 @@ export class DataLocalService {
 
   }
 
+  deleteNew(article: Article){
+    this.news = this.news.filter(art => art.title !== article.title);
+    this.storage.set('favorites', this.news);
+  }
+
   async loadFavs(){
 
     const favs = await this.storage.get('favorites');

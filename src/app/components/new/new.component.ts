@@ -17,6 +17,7 @@ export class NewComponent implements OnInit {
 
   @Input() new: Article;
   @Input() index: number;
+  @Input() isFavs;
 
   constructor(private iab: InAppBrowser, 
               private actionSheetCtrl: ActionSheetController,
@@ -31,6 +32,32 @@ export class NewComponent implements OnInit {
   }
 
   async presentActionSheet() {
+
+    let saveDeleteBtn;
+
+    if (this.isFavs) {
+      saveDeleteBtn =  {
+        text: 'Delete',
+        icon: 'trash',
+        cssClass: 'action-dark',
+        handler: () => {
+          console.log('Delete clicked');
+          this.dataLocalService.deleteNew( this.new );
+        }
+      };
+      
+    } else {
+      saveDeleteBtn =  {
+        text: 'Favorite',
+        icon: 'heart',
+        cssClass: 'action-dark',
+        handler: () => {
+          console.log('Favorite clicked');
+          this.dataLocalService.saveNew( this.new );
+        }
+      };
+    }
+
     const actionSheet = await this.actionSheetCtrl.create({
       buttons: [{
         text: 'Share',
@@ -45,15 +72,8 @@ export class NewComponent implements OnInit {
             this.new.url
           );
         }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        cssClass: 'action-dark',
-        handler: () => {
-          console.log('Favorite clicked');
-          this.dataLocalService.saveNew( this.new );
-        }
-      }, {
+      },saveDeleteBtn,
+      {
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',
