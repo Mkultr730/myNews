@@ -1,6 +1,6 @@
 # myNews
 
-This repository was made with the purpose of having an overview of the Ionic components and their operation.
+Personal application to view and save news. This application was made using [NewsAPI](https://newsapi.org/).
 
 ## Setup
 
