@@ -9,7 +9,9 @@ export class DataLocalService {
 
   news: Article[]= [];
 
-  constructor(private storage: Storage) {  }
+  constructor(private storage: Storage) { 
+    this.loadFavs();
+   }
 
   saveNew(article: Article){
 
@@ -22,7 +24,14 @@ export class DataLocalService {
 
   }
 
-  loadFavs(){
+  async loadFavs(){
+
+    const favs = await this.storage.get('favorites');
+    console.log('Favorites', favs);
+
+    if (favs) {
+      this.news = favs;    
+    }
 
   }
 
