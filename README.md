@@ -20,7 +20,7 @@ On a real or virtual device
 ```bash
 ionic integrations enable cordova --add
 ```
-This download and add the Cordova integration even if it's enabled.
+This will download and add the Cordova integration even if it's enabled.
 
 
 Next, you can follow the Ionic documentation instructions for Android and iOS
